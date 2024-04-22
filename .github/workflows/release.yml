@@ -45,7 +45,7 @@ jobs:
         run: |
           version=$( grep "versionName" app/build.gradle | awk -F'"' '{print $2}' )
           gh auth login --with-token <<<"${{ secrets.GITHUB_TOKEN }}"
-          gh release create "v${version}_test" --title "v${version}" --notes-file ".github/changelog.md" --prerelease=${{ inputs.is_pre_release }} --repo bean-factory/Tubular
+          gh release create "v${version}_test" --title "v${version}" --prerelease=${{ inputs.is_pre_release }} --repo bean-factory/Tubular
           gh release upload "v${version}_test" app/build/outputs/apk/release/*.apk --repo bean-factory/Tubular
       - name: Archive reports for job
         uses: actions/upload-artifact@v4
